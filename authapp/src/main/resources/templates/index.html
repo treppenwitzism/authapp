@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Sign Up</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .signup-fields {
+            display: none;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        select {
+            cursor: pointer;
+            background-color: white;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .message {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 500;
+            display: none;
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .toggle-text {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+
+        .toggle-text a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .toggle-text a:hover {
+            text-decoration: underline;
+        }
+
+        .error-input {
+            border-color: #dc3545 !important;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2 id="form-title">Login</h2>
+
+    <!-- Signup only fields -->
+    <div class="signup-fields" id="signup-fields">
+        <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Enter your full name">
+        </div>
+
+        <div class="form-group">
+            <label for="studentId">Student ID</label>
+            <input type="text" id="studentId" placeholder="Enter your student ID">
+        </div>
+    </div>
+
+    <!-- Common fields -->
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter your email">
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password">
+    </div>
+
+    <!-- More signup only fields -->
+    <div class="signup-fields">
+        <div class="form-group">
+            <label for="yearLevel">Year Level</label>
+            <select id="yearLevel">
+                <option value="">Select year level</option>
+                <option value="1st Year">1st Year</option>
+                <option value="2nd Year">2nd Year</option>
+                <option value="3rd Year">3rd Year</option>
+                <option value="4th Year">4th Year</option>
+                <option value="5th Year">5th Year</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="course">Course</label>
+            <select id="course">
+                <option value="">Select course</option>
+                <option value="Biology">Biology</option>
+                <option value="Psychology">Psychology</option>
+                <option value="Office Administration">Office Administration</option>
+                <option value="Business Administration">Business Administration</option>
+                <option value="Accountancy">Accountancy</option>
+                <option value="Information Technology">Information Technology</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Criminology">Criminology</option>
+                <option value="Electronics Engineering">Electronics Engineering</option>
+                <option value="Electrical Engineering">Electrical Engineering</option>
+                <option value="Computer Engineering">Computer Engineering</option>
+                <option value="Industrial Technology">Industrial Technology</option>
+                <option value="Hospitality Management">Hospitality Management</option>
+                <option value="Tourism Management">Tourism Management</option>
+                <option value="Secondary Education">Secondary Education</option>
+                <option value="Elementary Education">Elementary Education</option>
+                <option value="Physical Education">Physical Education</option>
+                <option value="Technology and Livelihood Education">Technology and Livelihood Education</option>
+                <option value="Technical Vocational Teacher Education">Technicaly and Vocational Teacher Education</option>
+
+
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="section">Section</label>
+            <input type="text" id="section" placeholder="Enter your section (e.g., A, B, 1)">
+        </div>
+    </div>
+
+    <button id="login-btn" onclick="login()">Login</button>
+    <button id="signup-btn" onclick="signup()" style="display: none;">Sign Up</button>
+
+    <div id="message" class="message"></div>
+
+    <div class="toggle-text">
+        <span id="toggle-message">Don't have an account? </span>
+        <a href="#" id="toggle-link" onclick="toggleForm(event)">Sign up</a>
+    </div>
+</div>
+
+<script>
+    let isLoginMode = true;
+
+    function toggleForm(event) {
+        event.preventDefault();
+        isLoginMode = !isLoginMode;
+
+        const title = document.getElementById('form-title');
+        const loginBtn = document.getElementById('login-btn');
+        const signupBtn = document.getElementById('signup-btn');
+        const signupFields = document.querySelectorAll('.signup-fields');
+        const toggleMessage = document.getElementById('toggle-message');
+        const toggleLink = document.getElementById('toggle-link');
+        const message = document.getElementById('message');
+
+        if (isLoginMode) {
+            title.textContent = 'Login';
+            loginBtn.style.display = 'block';
+            signupBtn.style.display = 'none';
+            signupFields.forEach(field => field.style.display = 'none');
+            toggleMessage.textContent = "Don't have an account? ";
+            toggleLink.textContent = 'Sign up';
+        } else {
+            title.textContent = 'Sign Up';
+            loginBtn.style.display = 'none';
+            signupBtn.style.display = 'block';
+            signupFields.forEach(field => field.style.display = 'block');
+            toggleMessage.textContent = 'Already have an account? ';
+            toggleLink.textContent = 'Login';
+        }
+
+        message.style.display = 'none';
+        clearForm();
+    }
+
+    function clearForm() {
+        document.getElementById('name').value = '';
+        document.getElementById('studentId').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('password').value = '';
+        document.getElementById('yearLevel').value = '';
+        document.getElementById('course').value = '';
+        document.getElementById('section').value = '';
+
+        // Remove error highlighting
+        document.querySelectorAll('.error-input').forEach(input => {
+            input.classList.remove('error-input');
+        });
+    }
+
+    function showMessage(text, isSuccess) {
+        const message = document.getElementById('message');
+        message.textContent = text;
+        message.className = 'message ' + (isSuccess ? 'success' : 'error');
+        message.style.display = 'block';
+    }
+
+    function validateEmail(email) {
+        // Check if email contains @ and a domain
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    function highlightError(elementId) {
+        document.getElementById(elementId).classList.add('error-input');
+    }
+
+    function clearErrors() {
+        document.querySelectorAll('.error-input').forEach(input => {
+            input.classList.remove('error-input');
+        });
+    }
+
+    async function login() {
+        clearErrors();
+
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+
+        if (!email || !password) {
+            showMessage('Please fill in all fields', false);
+            if (!email) highlightError('email');
+            if (!password) highlightError('password');
+            return;
+        }
+
+        if (!validateEmail(email)) {
+            showMessage('Please enter a valid email address (e.g., user@example.com)', false);
+            highlightError('email');
+            return;
+        }
+
+        try {
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            });
+
+            const result = await response.text();
+
+            if (result === 'Login successful') {
+                showMessage(result, true);
+                // Redirect or do something on successful login
+            } else {
+                showMessage(result, false);
+            }
+        } catch (error) {
+            showMessage('Error connecting to server', false);
+        }
+    }
+
+    async function signup() {
+        clearErrors();
+
+        const name = document.getElementById('name').value.trim();
+        const studentId = document.getElementById('studentId').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const yearLevel = document.getElementById('yearLevel').value;
+        const course = document.getElementById('course').value;
+        const section = document.getElementById('section').value.trim();
+
+        // Validation
+        if (!name || !studentId || !email || !password || !yearLevel || !course || !section) {
+            showMessage('Please fill in all fields', false);
+            if (!name) highlightError('name');
+            if (!studentId) highlightError('studentId');
+            if (!email) highlightError('email');
+            if (!password) highlightError('password');
+            if (!yearLevel) highlightError('yearLevel');
+            if (!course) highlightError('course');
+            if (!section) highlightError('section');
+            return;
+        }
+
+        if (!validateEmail(email)) {
+            showMessage('Please enter a valid email address (e.g., user@example.com)', false);
+            highlightError('email');
+            return;
+        }
+
+        if (password.length < 6) {
+            showMessage('Password must be at least 6 characters', false);
+            highlightError('password');
+            return;
+        }
+
+        try {
+            const response = await fetch('/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name,
+                    studentId,
+                    email,
+                    password,
+                    yearLevel,
+                    course,
+                    section
+                })
+            });
+
+            const result = await response.text();
+
+            if (result === 'Sign up successful') {
+                showMessage(result + '! Redirecting to login...', true);
+                setTimeout(() => toggleForm(new Event('click')), 2000);
+            } else {
+                showMessage(result, false);
+            }
+        } catch (error) {
+            showMessage('Error connecting to server', false);
+        }
+    }
+
+    // Allow Enter key to submit
+    document.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            if (isLoginMode) {
+                login();
+            } else {
+                signup();
+            }
+        }
+    });
+</script>
+</body>
+</html>

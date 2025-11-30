@@ -32,12 +32,12 @@ public class AuthService {
                 return "User already exists";
             }
 
-            // Create new user with all fields
+            // Create new user
             Map<String, Object> userData = new HashMap<>();
             userData.put("name", user.getName());
             userData.put("studentId", user.getStudentId());
             userData.put("email", user.getEmail());
-            userData.put("password", user.getPassword()); // In production, hash this!
+            userData.put("password", user.getPassword()); // Needs to be hashed
             userData.put("yearLevel", user.getYearLevel());
             userData.put("course", user.getCourse());
             userData.put("section", user.getSection());

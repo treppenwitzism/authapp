@@ -183,27 +183,16 @@
             <label for="course">Course</label>
             <select id="course">
                 <option value="">Select course</option>
-                <option value="Biology">Biology</option>
-                <option value="Psychology">Psychology</option>
-                <option value="Office Administration">Office Administration</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Information Technology">Information Technology</option>
+                <option value="Engineering">Engineering</option>
                 <option value="Business Administration">Business Administration</option>
                 <option value="Accountancy">Accountancy</option>
-                <option value="Information Technology">Information Technology</option>
-                <option value="Computer Science">Computer Science</option>
-                <option value="Criminology">Criminology</option>
-                <option value="Electronics Engineering">Electronics Engineering</option>
-                <option value="Electrical Engineering">Electrical Engineering</option>
-                <option value="Computer Engineering">Computer Engineering</option>
-                <option value="Industrial Technology">Industrial Technology</option>
-                <option value="Hospitality Management">Hospitality Management</option>
-                <option value="Tourism Management">Tourism Management</option>
-                <option value="Secondary Education">Secondary Education</option>
-                <option value="Elementary Education">Elementary Education</option>
-                <option value="Physical Education">Physical Education</option>
-                <option value="Technology and Livelihood Education">Technology and Livelihood Education</option>
-                <option value="Technical Vocational Teacher Education">Technicaly and Vocational Teacher Education</option>
-
-
+                <option value="Nursing">Nursing</option>
+                <option value="Education">Education</option>
+                <option value="Architecture">Architecture</option>
+                <option value="Psychology">Psychology</option>
+                <option value="Communication">Communication</option>
                 <option value="Other">Other</option>
             </select>
         </div>
@@ -330,7 +319,11 @@
 
             if (result === 'Login successful') {
                 showMessage(result, true);
-                // Redirect or do something on successful login
+                // Store user email and redirect to dashboard
+                sessionStorage.setItem('userEmail', email);
+                setTimeout(() => {
+                    window.location.href = '/session/dashboard';
+                }, 1000);
             } else {
                 showMessage(result, false);
             }

@@ -338,7 +338,7 @@
         // Set active button
         event.target.classList.add('active');
 
-        // Refresh data when switching to certain tabs
+        // Refresh data
         if (tabName === 'dashboard') {
             updateDashboard();
         } else if (tabName === 'view-sessions') {
@@ -352,10 +352,10 @@
             const response = await fetch(`/session/subject/list?userEmail=${encodeURIComponent(userEmail)}`);
             allSubjects = await response.json();
 
-            // Update subject dropdowns
+            // Update
             updateSubjectDropdowns();
 
-            // Update subjects list
+            // Update list
             displaySubjects();
         } catch (error) {
             console.error('Error loading subjects:', error);

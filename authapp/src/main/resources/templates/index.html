@@ -141,7 +141,7 @@
 <div class="container">
     <h2 id="form-title">Login</h2>
 
-    <!-- Signup only fields -->
+    <!-- Signup fields -->
     <div class="signup-fields" id="signup-fields">
         <div class="form-group">
             <label for="name">Full Name</label>
@@ -165,7 +165,7 @@
         <input type="password" id="password" placeholder="Enter your password">
     </div>
 
-    <!-- More signup only fields -->
+    <!-- Signup fields again -->
     <div class="signup-fields">
         <div class="form-group">
             <label for="yearLevel">Year Level</label>
@@ -175,10 +175,10 @@
                 <option value="2nd Year">2nd Year</option>
                 <option value="3rd Year">3rd Year</option>
                 <option value="4th Year">4th Year</option>
-                <option value="5th Year">5th Year</option>
             </select>
         </div>
 
+        <!-- You can try modifying this to have more courses. —CJ -->
         <div class="form-group">
             <label for="course">Course</label>
             <select id="course">
@@ -258,7 +258,6 @@
         document.getElementById('course').value = '';
         document.getElementById('section').value = '';
 
-        // Remove error highlighting
         document.querySelectorAll('.error-input').forEach(input => {
             input.classList.remove('error-input');
         });
@@ -272,7 +271,7 @@
     }
 
     function validateEmail(email) {
-        // Check if email contains @ and a domain
+        // Checks email for @ and domain.
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     }
@@ -398,7 +397,6 @@
         }
     }
 
-    // Allow Enter key to submit
     document.addEventListener('keypress', function(event) {
         if (event.key === 'Enter') {
             if (isLoginMode) {
